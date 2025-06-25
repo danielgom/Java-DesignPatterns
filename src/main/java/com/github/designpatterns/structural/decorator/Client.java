@@ -8,11 +8,11 @@ public class Client {
 
         System.out.println(m.getContent());
 
-        Message decorator = new HtmlEncodedMessage(m);
-        System.out.println(decorator.getContent());
+        Message htmlEncodedMessage = new HtmlEncodedMessage(m);
+        System.out.println(htmlEncodedMessage.getContent());
 
-        decorator = new Base64EncodedMessage(m);
+        Message base64EncodedMessage = new Base64EncodedMessage(m);
 
-        System.out.println(decorator.getContent());
+        System.out.println(base64EncodedMessage.getContent());
     }
 }

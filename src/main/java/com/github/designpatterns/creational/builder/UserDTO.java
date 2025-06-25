@@ -6,12 +6,12 @@ import java.util.Objects;
 public class UserDTO {
 
     private String name;
-    private String address;
-    private String age;
-    private LocalDateTime createdOn;
 
-    private UserDTO() {
-    }
+    private String address;
+
+    private String age;
+
+    private LocalDateTime createdOn;
 
     private void setName(String name) {
         this.name = name;
@@ -29,14 +29,11 @@ public class UserDTO {
         this.createdOn = createdOn;
     }
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", age='" + age + '\'' +
-                ", createdOn=" + createdOn +
-                '}';
+    private UserDTO(Builder builder) {
+        this.name = builder.name;
+        this.address = builder.address;
+        this.age = builder.age;
+        this.createdOn = Objects.requireNonNullElseGet(builder.createdOn, LocalDateTime::now);
     }
 
     @Override
@@ -53,45 +50,39 @@ public class UserDTO {
         return Objects.hash(name, address, age, createdOn);
     }
 
-    public static UserDTOBuilder builder() {
-        return new UserDTOBuilder();
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static class UserDTOBuilder {
+    public static class Builder {
 
         private String name;
         private String address;
         private String age;
         private LocalDateTime createdOn;
 
-        public UserDTOBuilder withFirstName(String name) {
+        public Builder withFirstName(String name) {
             this.name = name;
             return this;
         }
 
-        public UserDTOBuilder withAddress(String address) {
+        public Builder withAddress(String address) {
             this.address = address;
             return this;
         }
 
-        public UserDTOBuilder withAge(String age) {
+        public Builder withAge(String age) {
             this.age = age;
             return this;
         }
 
-        public UserDTOBuilder withCreationTime(LocalDateTime dateTime) {
+        public Builder withCreationTime(LocalDateTime dateTime) {
             this.createdOn = dateTime;
             return this;
         }
 
         public UserDTO build() {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setName(this.name);
-            userDTO.setAddress(this.address);
-            userDTO.setAge(this.age);
-
-            userDTO.setCreatedOn(Objects.requireNonNullElseGet(this.createdOn, LocalDateTime::now));
-            return userDTO;
+            return new UserDTO(this);
         }
     }
 }
