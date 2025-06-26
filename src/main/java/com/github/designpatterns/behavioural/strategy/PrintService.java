@@ -13,8 +13,4 @@ public class PrintService {
     public void printOrders(List<Order> orders) {
         orderPrinter.print(orders);
     }
-
-    public void setOrderPrinter(OrderPrinter orderPrinter) {
-        this.orderPrinter = orderPrinter;
-    }
 }

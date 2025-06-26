@@ -14,6 +14,9 @@ public class Client {
 
         PrintService printService = new PrintService(new SummaryPrinter());
         printService.printOrders(orders);
+
+        printService = new PrintService(new BeautifulPrinter());
+        printService.printOrders(orders);
     }
 
     private static void createOrders() {

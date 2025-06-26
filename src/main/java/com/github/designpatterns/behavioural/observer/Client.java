@@ -1,7 +1,6 @@
 package com.github.designpatterns.behavioural.observer;
 
 public class Client {
-
     public static void main(String[] args) {
         Order order = new Order("100");
         PriceObserver priceObserver = new PriceObserver();

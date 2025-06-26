@@ -1,7 +1,6 @@
 package com.github.designpatterns.behavioural.observer;
 
 public class QuantityObserver implements OrderObserver {
-
     @Override
     public void updated(Order order) {
         int count = order.getCount();
@@ -11,5 +10,6 @@ public class QuantityObserver implements OrderObserver {
         } else {
             order.setShippingCost(10 + (count - 5) * 1.5);
         }
+        System.out.println("Quantity updated");
     }
 }
